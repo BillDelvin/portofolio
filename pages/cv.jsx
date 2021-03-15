@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-class Portofolios extends Component {
+class CV extends Component {
  render() {
   return <div></div>;
  }

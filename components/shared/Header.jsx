@@ -5,8 +5,6 @@ class Header extends Component {
  render() {
   return (
    <Fragment>
-    <p className="customeClass">styled element P</p>
-    <p>styled element P</p>
     <Link href="/">
      <a>Home</a>
     </Link>
@@ -22,13 +20,6 @@ class Header extends Component {
     <Link href="/cv">
      <a>CV</a>
     </Link>
-    <style jsx>
-     {`
-      .customeClass {
-       color: red;
-      }
-     `}
-    </style>
    </Fragment>
   );
  }

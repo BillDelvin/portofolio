@@ -1,26 +1,48 @@
-import { Component, Fragment } from 'react';
+import { Component } from 'react';
 import Link from 'next/link';
 
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+
+const BsNavLink = ({ title, href }) => {
+ return (
+  <Link href={href}>
+   <a className="nav-link"> {title} </a>
+  </Link>
+ );
+};
+
 class Header extends Component {
+ state = {
+  isOpen: false,
+ };
+
+ toggle = () => this.setState({ isOpen: !this.state.isOpen });
+
  render() {
   return (
-   <Fragment>
-    <Link href="/">
-     <a>Home</a>
-    </Link>
-    <Link href="/about">
-     <a>About</a>
-    </Link>
-    <Link href="/portofolios">
-     <a>Portofolios</a>
-    </Link>
-    <Link href="/blog">
-     <a>Blogs</a>
-    </Link>
-    <Link href="/cv">
-     <a>CV</a>
-    </Link>
-   </Fragment>
+   <Navbar color="light" light expand="md">
+    <NavbarBrand href="/">reactstrap</NavbarBrand>
+    <NavbarToggler onClick={this.toggle} />
+    <Collapse isOpen={this.state.isOpen} navbar>
+     <Nav className="mr-auto" navbar>
+      <NavItem>
+       <BsNavLink title="Home" href="/" />
+      </NavItem>
+      <NavItem>
+       <BsNavLink title="About" href="/about" />
+      </NavItem>
+      <NavItem>
+       <BsNavLink title="Portofolios" href="/portofolios" />
+      </NavItem>
+      <NavItem>
+       <BsNavLink title="Blog" href="/blog" />
+      </NavItem>
+      <NavItem>
+       <BsNavLink title="CV" href="/cv" />
+      </NavItem>
+     </Nav>
+    </Collapse>
+   </Navbar>
   );
  }
 }

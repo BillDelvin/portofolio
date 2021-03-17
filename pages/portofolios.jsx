@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from '../routes';
 
 import Layout from '../components/Layout';
+import BasePage from '../components/BasePage';
 
 class Portofolios extends Component {
  static async getInitialProps() {
@@ -32,9 +33,10 @@ class Portofolios extends Component {
   const { posts } = this.props;
   return (
    <Layout>
-    <h1>im Portofolios</h1>
-
-    <ul>{this.renderPosts(posts)}</ul>
+    <BasePage>
+     <h1>im Portofolios</h1>
+     <ul>{this.renderPosts(posts)}</ul>
+    </BasePage>
    </Layout>
   );
  }

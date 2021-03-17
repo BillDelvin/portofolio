@@ -1,11 +1,14 @@
 import { Component } from 'react';
 import Layout from '../components/Layout';
+import BasePage from '../components/BasePage';
 
 class About extends Component {
  render() {
   return (
    <Layout>
-    <h1>im about</h1>
+    <BasePage>
+     <h1>im about</h1>
+    </BasePage>
    </Layout>
   );
  }

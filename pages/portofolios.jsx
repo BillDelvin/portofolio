@@ -21,7 +21,7 @@ class Portofolios extends Component {
  renderPosts(posts) {
   return posts.map((post) => (
    <li key={post.id}>
-    <Link route={`portofolios/${post.id}`}>
+    <Link route={`/portofolios/${post.id}`}>
      <a> {post.title} </a>
     </Link>
    </li>

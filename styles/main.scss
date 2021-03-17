@@ -1,6 +1,18 @@
 @import './shared/font';
 
+// pages
+@import './index';
+
 html,
 body {
+ height: 100%;
+ width: 100%;
  font-family: 'Montserrat', 'Helvetica' !important;
+}
+
+.self-typed {
+ font-size: 31px;
+ color: white;
+ font-weight: bold;
+ letter-spacing: 2px;
 }

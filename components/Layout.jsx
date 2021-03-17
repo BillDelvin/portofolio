@@ -1,11 +1,12 @@
 import Header from '../components/shared/Header';
-import { Container } from 'reactstrap';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, className }) => {
  return (
-  <div>
+  <div className="layout-container">
    <Header />
-   <Container>{children}</Container>
+   <main className={`cover ${className}`}>
+    <div className="wrapper">{children}</div>
+   </main>
   </div>
  );
 };

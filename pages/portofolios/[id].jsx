@@ -1,8 +1,8 @@
-import Layout from '../../components/Layout';
 import axios from 'axios';
 import { withRouter } from 'next/router';
 
-import BasePage from '../../components/BasePage';
+import Layout from '@/components/Layout';
+import BasePage from '@/components/BasePage';
 
 const PortofoliosDetail = ({ post }) => {
  return (

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Link from 'next/link';
 
-import Layout from '../../components/Layout';
-import BasePage from '../../components/BasePage';
+import Layout from '@/components/Layout';
+import BasePage from '@/components/BasePage';
 
 const Portofolios = (props) => {
  const { posts } = props;

@@ -1,4 +1,4 @@
-import Header from '../components/shared/Header';
+import Header from '@/components/shared/Header';
 
 const Layout = ({ children, className }) => {
  return (

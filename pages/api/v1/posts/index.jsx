@@ -5,6 +5,6 @@ export default async (req, res) => {
   const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts');
   return res.status(200).json(data.slice(0, 10));
  } catch (error) {
-  return res.status(error.status || 400).end('Api Error');
+  return res.status(error.status || 400).json({ message: 'API Error' });
  }
 };

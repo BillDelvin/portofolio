@@ -1,27 +1,11 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import Layout from '@/components/Layout';
 import BasePage from '@/components/BasePage';
-
-const useGetPortofolio = () => {
- const [posts, setPosts] = useState([]);
-
- useEffect(() => {
-  async function getPosts() {
-   const res = await fetch('/api/v1/posts');
-   const data = await res.json();
-   setPosts(data);
-  }
-
-  getPosts();
- }, []);
-
- return { posts };
-};
+import { useGetData } from '@/actions';
 
 const Portofolios = () => {
- const { posts } = useGetPortofolio();
+ const { data, error, loading } = useGetData();
 
  const renderPosts = (posts) => {
   return posts.map((post) => (
@@ -33,11 +17,21 @@ const Portofolios = () => {
   ));
  };
 
+ // const isData =
+ //  posts.length !== 0 && !error ? (
+ //   <ul>{renderPosts(posts)}</ul>
+ //  ) : (
+ //   <div className="alert alert-danger">{error.message}</div>
+ //  );
+
  return (
   <Layout>
    <BasePage>
     <h1>im Portofolios</h1>
-    <ul>{renderPosts(posts)}</ul>
+    {/* {isData} */}
+    {loading && <p>Loading Data....</p>}
+    {data && <ul>{renderPosts(data)}</ul>}
+    {error && <div className="alert alert-danger">{error.message}</div>}
    </BasePage>
   </Layout>
  );

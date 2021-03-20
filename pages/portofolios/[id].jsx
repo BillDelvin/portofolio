@@ -1,32 +1,29 @@
-import axios from 'axios';
-import { withRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 import Layout from '@/components/Layout';
 import BasePage from '@/components/BasePage';
+import { useGetDataById } from '@/actions';
 
-const PortofoliosDetail = ({ post }) => {
+const PortofoliosDetail = () => {
+ const router = useRouter();
+ const { data: post, error, loading } = useGetDataById(router.query.id);
+
  return (
   <Layout>
    <BasePage>
-    <h1>Im portofolio detail</h1>
-    <h1>{post.title}</h1>
-    <p>body : {post.body}</p>
-    <p>id : {post.id}</p>
+    {loading && <p>Loading Data....</p>}
+    {post && (
+     <div>
+      <h1>Im portofolio detail</h1>
+      <h1>{post.title}</h1>
+      <p>body : {post.body}</p>
+      <p>id : {post.id}</p>
+     </div>
+    )}
+    {error && <div className="alert alert-danger">{error.message}</div>}
    </BasePage>
   </Layout>
  );
 };
 
-PortofoliosDetail.getInitialProps = async ({ query }) => {
- let post = {};
- try {
-  const res = await axios.get(`https://jsonplaceholder.typicode.com/posts/${query.id}`);
-  post = res.data;
- } catch (error) {
-  console.log(error);
- }
-
- return { post };
-};
-
-export default withRouter(PortofoliosDetail);
+export default PortofoliosDetail;

@@ -6,7 +6,6 @@ import { useGetData } from '@/actions';
 
 const Portofolios = () => {
  const { data, error, loading } = useGetData();
-
  const renderPosts = (posts) => {
   return posts.map((post) => (
    <li key={post.id}>

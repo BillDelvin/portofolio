@@ -23,7 +23,11 @@ const Login = () => (
  </a>
 );
 
-const Logout = () => <span className="nav-link port-navbar-link clickable">Logout</span>;
+const Logout = () => (
+ <a href="/api/v1/logout" className="nav-link port-navbar-link">
+  Logout
+ </a>
+);
 
 const Header = ({ user, loading }) => {
  const [isOpen, setIsOpen] = useState(false);

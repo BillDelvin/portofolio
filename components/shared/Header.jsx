@@ -25,9 +25,8 @@ const Login = () => (
 
 const Logout = () => <span className="nav-link port-navbar-link clickable">Logout</span>;
 
-const Header = () => {
+const Header = ({ user, loading }) => {
  const [isOpen, setIsOpen] = useState(false);
-
  const toggle = () => setIsOpen(!isOpen);
 
  return (
@@ -53,12 +52,20 @@ const Header = () => {
      </NavItem>
     </Nav>
     <Nav navbar>
-     <NavItem className="port-navbar-item">
-      <Login />
-     </NavItem>
-     <NavItem className="port-navbar-item">
-      <Logout />
-     </NavItem>
+     {!loading && (
+      <>
+       {user && (
+        <NavItem className="port-navbar-item">
+         <Logout />
+        </NavItem>
+       )}
+       {!user && (
+        <NavItem className="port-navbar-item">
+         <Login />
+        </NavItem>
+       )}
+      </>
+     )}
     </Nav>
    </Collapse>
   </Navbar>

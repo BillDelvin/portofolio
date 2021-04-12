@@ -1,9 +1,9 @@
 import Header from '@/components/shared/Header';
 
-const Layout = ({ children, className }) => {
+const Layout = ({ children, className, user, loading }) => {
  return (
   <div className="layout-container">
-   <Header />
+   <Header user={user} loading={loading} />
    <main className={`cover ${className}`}>
     <div className="wrapper">{children}</div>
    </main>

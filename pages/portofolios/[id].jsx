@@ -1,15 +1,16 @@
-import { useGetUser } from '../actions/user';
-
 import Layout from '@/components/Layout';
 import BasePage from '@/components/BasePage';
+import { useRouter } from 'next/router';
+import { useGetUser } from '@/actions/user';
 import { useGetDataById } from '@/actions';
 
 const PortofoliosDetail = () => {
+ const router = useRouter();
  const { data: post, error, loading } = useGetDataById(router.query.id);
- const { data, loading } = useGetUser();
+ const { data: dataUser, loading: loadingUser } = useGetUser();
 
  return (
-  <Layout user={data} loading={loading}>
+  <Layout user={dataUser} loading={loadingUser}>
    <BasePage>
     {loading && <p>Loading Data....</p>}
     {post && (

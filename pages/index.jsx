@@ -1,12 +1,15 @@
 import Layout from '@/components/Layout';
+import { useGetUser } from '../actions/user';
 import { Container, Row, Col } from 'reactstrap';
 import Typed from 'react-typed';
 
 const ROLES = ['Developer', 'Tech Lover', 'Cursor Creator', 'React.JS', 'Next.JS'];
 
 const Home = () => {
+ const { data, loading } = useGetUser();
+
  return (
-  <Layout className="cover">
+  <Layout user={data} loading={loading} className="cover">
    <div className="main-section">
     <div className="background-image">
      <img src="/images/background-index.png" />

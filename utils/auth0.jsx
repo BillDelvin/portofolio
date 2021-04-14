@@ -1,6 +1,6 @@
 import { initAuth0 } from '@auth0/nextjs-auth0';
 
-export default initAuth0({
+const auth0 = initAuth0({
  secret: process.env.AUTH0_SECRET,
  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
  baseURL: process.env.AUTH0_BASE_URL,
@@ -11,3 +11,18 @@ export default initAuth0({
   postLogoutRedirect: process.env.AUTH0_POST_LOGOUT_REDIRECT,
  },
 });
+
+export default auth0;
+
+export const authorizeUser = async (req, res) => {
+ const session = await auth0.getSession(req, res);
+ if (!session || !session.user) {
+  res.writeHead(302, {
+   Location: '/api/v1/login',
+  });
+  res.end();
+  return null;
+ } else {
+  return session.user;
+ }
+};

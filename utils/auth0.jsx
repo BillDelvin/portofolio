@@ -31,14 +31,15 @@ export const authorizeUser = async (req, res) => {
  }
 };
 
-export const withAuth = (getData) => async ({ req, res }) => {
+export const withAuth = (getData) => (role) => async ({ req, res }) => {
  const session = await auth0.getSession(req, res);
- if (!session || !session.user) {
-  res.writeHead(302, {
-   Location: '/api/v1/login',
-  });
-  res.end();
-  return { props: {} };
+ if (!session || !session.user || (role && !isAuthorized(session.user, role))) {
+  return {
+   redirect: {
+    destination: '/api/v1/login',
+    statusCode: 302,
+   },
+  };
  }
 
  const data = getData ? await getData({ req, res }, session.user) : {};

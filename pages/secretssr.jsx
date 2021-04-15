@@ -30,6 +30,6 @@ const getTitle = () => {
 export const getServerSideProps = withAuth(async ({ req, res }, user) => {
  const title = await getTitle();
  return title;
-})('admin');
+})();
 
 export default SecretSSR;

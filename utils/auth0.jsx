@@ -15,7 +15,7 @@ const auth0 = initAuth0({
 export default auth0;
 
 export const isAuthorized = (user, role) => {
- return user && user['http://localhost:3000/roles'].includes(role);
+ return user && user[process.env.AUTH0_NAMEPSPACE].includes(role);
 };
 
 export const authorizeUser = async (req, res) => {

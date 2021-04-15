@@ -26,4 +26,4 @@ const Secret = ({ user, loading }) => {
 // modern syntax
 // const withAuth = (Component) => (props) => <Component title="hello world" {...props} />;
 
-export default withAuth(Secret);
+export default withAuth(Secret)();

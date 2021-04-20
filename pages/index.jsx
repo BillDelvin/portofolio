@@ -9,7 +9,7 @@ const Home = () => {
  const { data, loading } = useGetUser();
 
  return (
-  <Layout user={data} loading={loading} className="cover">
+  <Layout user={data} loading={loading} navClass="transparent" className="cover">
    <div className="main-section">
     <div className="background-image">
      <img src="/images/background-index.png" />

@@ -1,7 +1,7 @@
 import { Component, useState } from 'react';
 import Link from 'next/link';
 
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
 
 const BsNavLink = ({ title, href }) => {
  return (
@@ -29,12 +29,17 @@ const Logout = () => (
  </a>
 );
 
-const Header = ({ user, loading }) => {
+const Header = ({ user, loading, className }) => {
  const [isOpen, setIsOpen] = useState(false);
  const toggle = () => setIsOpen(!isOpen);
 
  return (
-  <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
+  <Navbar
+   className={`port-navbar port-default absolute ${className}`}
+   color="transparent"
+   dark
+   expand="md"
+  >
    <BsNavBrand />
    <NavbarToggler onClick={toggle} />
    <Collapse isOpen={isOpen} navbar>
@@ -54,7 +59,7 @@ const Header = ({ user, loading }) => {
      <NavItem className="port-navbar-item">
       <BsNavLink title="CV" href="/cv" />
      </NavItem>
-     <NavItem className="port-navbar-item">
+     {/* <NavItem className="port-navbar-item">
       <BsNavLink title="Secret" href="/secret" />
      </NavItem>
      <NavItem className="port-navbar-item">
@@ -65,7 +70,7 @@ const Header = ({ user, loading }) => {
      </NavItem>
      <NavItem className="port-navbar-item">
       <BsNavLink title="AdminSSR" href="/onlyadminssr" />
-     </NavItem>
+     </NavItem> */}
     </Nav>
     <Nav navbar>
      {!loading && (

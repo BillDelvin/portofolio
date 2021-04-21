@@ -1,8 +1,15 @@
 import axios from 'axios';
 
 class PortofolioApi {
+ constructor() {
+  this.apiUrl = process.env.PORTOFOLIO_API_URL + '/portofolios';
+ }
  getAll() {
-  return axios.get('http://localhost:3001/api/v1/portofolios');
+  return axios.get(this.apiUrl);
+ }
+
+ getById(id) {
+  return axios.get(`${this.apiUrl}/${id}`);
  }
 }
 

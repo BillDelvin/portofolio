@@ -3,7 +3,6 @@ import { useGetUser } from '../actions/user';
 import { isAuthorized } from '../utils/auth0';
 
 const withAuth = (Component) => (role) => (props) => {
- console.log(role);
  const { data, loading } = useGetUser();
 
  if (loading) {

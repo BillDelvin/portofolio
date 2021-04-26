@@ -27,6 +27,10 @@ class PortofolioApi {
  updatedPortofolio(id, data) {
   return axios.patch(`${this.apiUrl}/${id}`, data, this.config);
  }
+
+ deletedPortofolio(id) {
+  return axios.delete(`${this.apiUrl}/${id}`, this.config);
+ }
 }
 
 export default PortofolioApi;

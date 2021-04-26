@@ -1,12 +1,23 @@
 import { Component, useState } from 'react';
 import Link from 'next/link';
+import { isAuthorized } from '../../utils/auth0';
 
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
+import {
+ Collapse,
+ Navbar,
+ NavbarToggler,
+ Nav,
+ NavItem,
+ Dropdown,
+ DropdownToggle,
+ DropdownItem,
+ DropdownMenu,
+} from 'reactstrap';
 
-const BsNavLink = ({ title, href }) => {
+const BsNavLink = ({ title, href, classname = '' }) => {
  return (
   <Link href={href}>
-   <a className="nav-link port-navbar-link"> {title} </a>
+   <a className={`nav-link port-navbar-link ${classname}`}> {title} </a>
   </Link>
  );
 };
@@ -29,9 +40,37 @@ const Logout = () => (
  </a>
 );
 
+const AdminMenu = ({ dropdownOpen, adminToggle }) => {
+ return (
+  <Dropdown
+   className="port-navbar-link port-dropdown-menu"
+   nav
+   isOpen={dropdownOpen}
+   toggle={adminToggle}
+  >
+   <DropdownToggle className="port-dropdown-toggle" nav caret>
+    Admin
+   </DropdownToggle>
+   <DropdownMenu right>
+    <DropdownItem>
+     <BsNavLink classname="port-dropdown-item" title="Create Portofolio" href="/portofolios/new" />
+    </DropdownItem>
+    <DropdownItem>
+     <BsNavLink classname="port-dropdown-item" title="Blog Editor" href="/blogs/editor" />
+    </DropdownItem>
+    <DropdownItem>
+     <BsNavLink classname="port-dropdown-item" title="Dashboard" href="/blogs/dashboard" />
+    </DropdownItem>
+   </DropdownMenu>
+  </Dropdown>
+ );
+};
+
 const Header = ({ user, loading, className }) => {
  const [isOpen, setIsOpen] = useState(false);
+ const [dropdownOpen, setDropdownOpen] = useState(false);
  const toggle = () => setIsOpen(!isOpen);
+ const adminToggle = () => setDropdownOpen((prevState) => !prevState);
 
  return (
   <Navbar
@@ -76,9 +115,14 @@ const Header = ({ user, loading, className }) => {
      {!loading && (
       <>
        {user && (
-        <NavItem className="port-navbar-item">
-         <Logout />
-        </NavItem>
+        <>
+         {isAuthorized(user, 'admin') && (
+          <AdminMenu dropdownOpen={dropdownOpen} adminToggle={adminToggle} />
+         )}
+         <NavItem className="port-navbar-item">
+          <Logout />
+         </NavItem>
+        </>
        )}
        {!user && (
         <NavItem className="port-navbar-item">

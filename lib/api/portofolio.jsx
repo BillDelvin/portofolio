@@ -1,7 +1,15 @@
 import axios from 'axios';
 
 class PortofolioApi {
- constructor() {
+ constructor(accessToken) {
+  this.config = {};
+
+  if (accessToken) {
+   this.config.headers = {
+    Authorization: `Bearer ${accessToken}`,
+   };
+  }
+
   this.apiUrl = process.env.PORTOFOLIO_API_URL + '/portofolios';
  }
  getAll() {
@@ -13,7 +21,7 @@ class PortofolioApi {
  }
 
  createPortofolio(data) {
-  return axios.post(this.apiUrl, data);
+  return axios.post(this.apiUrl, data, this.config);
  }
 }
 

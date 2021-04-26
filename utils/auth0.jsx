@@ -6,6 +6,10 @@ const auth0 = initAuth0({
  baseURL: process.env.AUTH0_BASE_URL,
  clientID: process.env.AUTH0_CLIENT_ID,
  clientSecret: process.env.AUTH0_CLIENT_SECRET,
+ authorizationParams: {
+  audience: process.env.AUTH0_AUDIENCE,
+  scope: 'openid profile',
+ },
  routes: {
   callback: process.env.AUTH0_CALLBACK,
   postLogoutRedirect: process.env.AUTH0_POST_LOGOUT_REDIRECT,

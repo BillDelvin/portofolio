@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import BasePage from '@/components/BasePage';
 import { useRouter } from 'next/router';
 import { useGetUser } from '@/actions/user';
-import PortofolioApi from '../../lib/api/portofolio';
+import PortofolioApi from '../../../lib/api/portofolio';
 
 const PortofoliosDetail = ({ portofolio }) => {
  const router = useRouter();

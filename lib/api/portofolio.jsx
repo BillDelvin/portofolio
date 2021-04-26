@@ -23,6 +23,10 @@ class PortofolioApi {
  createPortofolio(data) {
   return axios.post(this.apiUrl, data, this.config);
  }
+
+ updatedPortofolio(id, data) {
+  return axios.patch(`${this.apiUrl}/${id}`, data, this.config);
+ }
 }
 
 export default PortofolioApi;

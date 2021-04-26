@@ -31,6 +31,7 @@ export function useApiHandler(apiCallback) {
     data: json.data,
     loading: false,
    });
+   return json.data;
   } catch (error) {
    const errorMessage =
     (error.response && error.response.data.message) || 'Oops something went wrong!';
@@ -39,6 +40,8 @@ export function useApiHandler(apiCallback) {
     data: null,
     loading: false,
    });
+
+   return Promise.reject(errorMessage);
   }
  };
  return [handler, { ...reqState }];

@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { useApiHandler } from './index';
+import { useApiHandler, fetcher } from './index';
 import useSWR from 'swr';
-import { fetcher } from './index';
 
 export const useCreatePortofolio = () =>
  useApiHandler((data) => axios.post('/api/v1/portofolios', data));
+
+export const useUpdatedPortofolio = () =>
+ useApiHandler((id, data) => axios.patch(`/api/v1/portofolios/${id}`, data));
 
 export const useGetPortofolio = (id) => {
  const { data, error, ...rest } = useSWR(`/api/v1/portofolios/${id}`, fetcher);

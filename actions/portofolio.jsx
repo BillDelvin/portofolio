@@ -1,5 +1,6 @@
 import axios from 'axios';
+import { useState } from 'react';
+import { useApiHandler } from './index';
 
-export const createPortofolio = (data) => {
- return axios.post('/api/v1/portofolios', data);
-};
+export const useCreatePortofolio = () =>
+ useApiHandler((data) => axios.post('/api/v1/portofolios', data));

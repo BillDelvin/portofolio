@@ -1,5 +1,5 @@
-import PortofolioApi from '../../../lib/api/portofolio';
-import auth0 from '../../../utils/auth0';
+import PortofolioApi from '../../../../lib/api/portofolio';
+import auth0 from '../../../../utils/auth0';
 
 export default async function createPortofolio(req, res) {
  try {

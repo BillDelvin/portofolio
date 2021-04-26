@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 
-const PortofolioForm = ({ onSubmit }) => {
+const PortofolioForm = ({ onSubmit, initalUpdateData }) => {
  const [startDate, setStartDate] = useState(null);
  const [endDate, setEndDate] = useState(null);
  const {
@@ -10,7 +10,17 @@ const PortofolioForm = ({ onSubmit }) => {
   handleSubmit,
   formState: { errors },
   setValue,
- } = useForm();
+ } = useForm({
+  defaultValues: initalUpdateData,
+ });
+
+ useEffect(() => {
+  if (initalUpdateData) {
+   const { startDate, endDate } = initalUpdateData;
+   if (startDate) setStartDate(new Date(startDate));
+   if (endDate) setEndDate(new Date(endDate));
+  }
+ }, [initalUpdateData]);
 
  const handleChangeDate = (dateInputName, setDate) => (date) => {
   setValue(dateInputName, date);
@@ -127,7 +137,7 @@ const PortofolioForm = ({ onSubmit }) => {
     )}
    </div>
    <button type="submit" className="btn btn-primary">
-    Create
+    {initalUpdateData ? 'Updated' : 'Created'}
    </button>
   </form>
  );

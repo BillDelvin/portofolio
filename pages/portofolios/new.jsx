@@ -6,9 +6,8 @@ import { Row, Col } from 'reactstrap';
 import { useCreatePortofolio } from '@/actions/portofolio';
 import Redirect from '../../components/shared/Redirect';
 
-const PortofolioNew = ({ userData, userLoading }) => {
+const PortofolioNew = ({ user: userData, userLoading }) => {
  const [createPortofolio, { data, loading, error }] = useCreatePortofolio();
-
  if (data) {
   return <Redirect to="/portofolios" />;
  }

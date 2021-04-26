@@ -1,18 +1,27 @@
+import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import BasePage from '@/components/BasePage';
-import { useRouter } from 'next/router';
-import { useGetUser } from '@/actions/user';
-import PortofolioApi from '../../../lib/api/portofolio';
+import withAuth from '../../../hoc/withAuth';
+import { useGetPortofolio } from '../../../actions/portofolio';
+import PortofolioForm from '@/components/PortofolioForm';
+import { Row, Col } from 'reactstrap';
 
-const PortofoliosDetail = ({ portofolio }) => {
+const PortofolioEdit = ({ user }) => {
  const router = useRouter();
- const { data: dataUser, loading: loadingUser } = useGetUser();
-
+ const { data } = useGetPortofolio(router.query.id);
  return (
-  <Layout user={dataUser} loading={loadingUser}>
-   <BasePage header="Portofolio Detail">{JSON.stringify(portofolio)}</BasePage>
+  <Layout user={user} loading={false}>
+   <BasePage header="Portofolio Edit">
+    <Row>
+     <Col md="8">
+      {data && (
+       <PortofolioForm initalUpdateData={data} onSubmit={(data) => alert(JSON.stringify(data))} />
+      )}
+     </Col>
+    </Row>
+   </BasePage>
   </Layout>
  );
 };
 
-export default PortofoliosDetail;
+export default withAuth(PortofolioEdit)('admin');

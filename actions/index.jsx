@@ -26,15 +26,14 @@ export function useApiHandler(apiCallback) {
 
   try {
    const json = await apiCallback(...data);
-   debugger;
    setReqState({
     error: null,
     data: json.data,
     loading: false,
    });
   } catch (error) {
-   debugger;
-   const errorMessage = (error.message && error.response.message) || 'Oops something went wrong!';
+   const errorMessage =
+    (error.response && error.response.data.message) || 'Oops something went wrong!';
    setReqState({
     error: errorMessage,
     data: null,

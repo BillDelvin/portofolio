@@ -20,4 +20,14 @@ export default async function (req, res) {
    return res.status(400).json(error);
   }
  }
+
+ if (req.method === 'DELETE') {
+  try {
+   const { accessToken } = await auth0.getAccessToken(req, res);
+   const json = await new PortofolioApi(accessToken).deletedPortofolio(req.query.id);
+   return res.status(200).json(json.data);
+  } catch (error) {
+   return res.status(400).json(error);
+  }
+ }
 }

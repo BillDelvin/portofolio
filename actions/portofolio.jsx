@@ -8,6 +8,9 @@ export const useCreatePortofolio = () =>
 export const useUpdatedPortofolio = () =>
  useApiHandler((id, data) => axios.patch(`/api/v1/portofolios/${id}`, data));
 
+export const useDeletePortofolio = () =>
+ useApiHandler((id) => axios.delete(`/api/v1/portofolios/${id}`));
+
 export const useGetPortofolio = (id) => {
  const { data, error, ...rest } = useSWR(`/api/v1/portofolios/${id}`, fetcher);
  return { data, error, loading: !data && !error, ...rest };

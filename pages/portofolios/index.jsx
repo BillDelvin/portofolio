@@ -71,6 +71,7 @@ export async function getStaticProps() {
  const portofolios = getData.data;
  return {
   props: { portofolios },
+  revalidate: 1,
  };
 }
 

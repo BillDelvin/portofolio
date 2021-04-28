@@ -25,6 +25,7 @@
     "reactstrap": "^8.9.0",
     "sass": "^1.32.8",
     "sharp": "^0.28.1",
+    "slate-simple-editor": "git+https://github.com/Jerga99/slate-simple-editor.git",
     "swr": "^0.5.3",
     "webpack": "^5.26.3"
   }
